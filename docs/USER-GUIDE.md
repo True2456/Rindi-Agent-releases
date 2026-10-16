@@ -1,6 +1,6 @@
 # Rindi-Agent User Guide
 
-This guide covers Rindi-Agent 0.9.0 beta. Every screenshot comes from a real session on a small example project, `todo-cli`.
+This guide covers Rindi-Agent 0.9.1 beta. Every screenshot comes from a real session on a small example project, `todo-cli`.
 
 - [1. Install and set up a model](#1-install-and-set-up-a-model)
 - [2. Workspaces and sessions](#2-workspaces-and-sessions)
@@ -13,6 +13,7 @@ This guide covers Rindi-Agent 0.9.0 beta. Every screenshot comes from a real ses
 - [9. Keyboard shortcuts and slash commands](#9-keyboard-shortcuts-and-slash-commands)
 - [10. Where your data lives](#10-where-your-data-lives)
 - [11. Troubleshooting](#11-troubleshooting)
+- [12. Updating](#12-updating)
 
 ---
 
@@ -20,7 +21,7 @@ This guide covers Rindi-Agent 0.9.0 beta. Every screenshot comes from a real ses
 
 ### Install the app
 
-1. Download `Rindi-Agent-0.9.0.dmg` from the [releases page](https://github.com/True2456/Rindi-Agent-releases/releases).
+1. Download `Rindi-Agent-0.9.1.dmg` from the [releases page](https://github.com/True2456/Rindi-Agent-releases/releases).
 2. Open the disk image and drag **Rindi-Agent** onto the **Applications** shortcut.
 3. Eject the disk image and open Rindi-Agent from Applications.
 
@@ -30,16 +31,17 @@ Rindi-Agent is signed and notarized by Apple. The first time you open it, macOS 
 
 On first launch, **Set up a model** opens.
 
-![The Set up a model window, listing Qwen 3.8 Flash Next and two Qwen 3.8 27B builds with Download and Use Custom Folder buttons](images/01-model-setup.png)
+![The Set up a model window, listing Qwen 3.8 Flash Next, Flash Next with refusal directions, and the 27B builds below, each with Download and Use Custom Folder buttons](images/01-model-setup.png)
 
 | Model | Download | Unified memory | Choose it when |
 | --- | --- | --- | --- |
 | Qwen 3.8 Flash Next | 182 GB | 128 GB | You have 128 GB or more and want long sessions (up to 256k tokens) |
 | Qwen 3.8 27B (AWQ 5.0 bpw) | 17 GB | 32 GB | You have 32–96 GB, or want images and video in prompts |
 | Qwen 3.8 27B (AWQ 4.85 bpw) | 17 GB | 32 GB | You want a slightly smaller 27B |
+| Qwen 3.8 Flash Next (with refusal directions) | 182 GB | 128 GB | You want the optional [Refusal ablation](#refusal-ablation) setting. Same weights as Flash Next |
 
 - **Download** fetches the model from Hugging Face into the **Download location** shown at the top. Use **Change…** to put models on another drive. A download resumes after an interruption, every file is checked against its published checksum, and the model only counts as installed once the whole download is complete.
-- The window checks free space first. In the screenshot, the Mac has 112 GB free, so Flash Next (which needs 184 GB) shows a warning.
+- The window checks free space first. In the screenshot, the Mac has 126 GB free, so both Flash Next downloads (which need 184 GB) show a warning. Scroll down for the 27B models.
 - **Use Custom Folder…** points Rindi-Agent at a copy of the model you already have.
 - **Continue Without a Model** uses Apple's on-device model, which is good for short questions but has a small context.
 
@@ -226,7 +228,7 @@ Open **Settings** with ⌘, or the button at the bottom of the sidebar. Use the 
 
 | Page | What's there |
 | --- | --- |
-| **General** | Default thinking effort, showing reasoning, background notifications, appearance, and how many worker agents run in parallel |
+| **General** | Default thinking effort, showing reasoning, background notifications, [refusal ablation](#refusal-ablation), appearance, and how many worker agents run in parallel |
 | **Models** | Each model's folder, context length, maximum output, and speed options; **Model Setup…** |
 | **Performance** | Automatic compaction of long chats, how many recent conversations stay in memory, the SSD conversation cache, and the GPU buffer pool |
 | **Instructions** | Your global instructions file and installed skills |
@@ -234,11 +236,21 @@ Open **Settings** with ⌘, or the button at the bottom of the sidebar. Use the 
 | **Voice** | Reading replies aloud: voice, rate and volume |
 | **MCP Servers** | Model Context Protocol servers |
 | **Logs** | The runtime log, with **Copy**, **Show Log File** and **Clear** |
-| **About** | Version, memory, data folder, runtime log, and **Reset…** |
+| **About** | Version, memory, [updates](#12-updating), data folder, runtime log, and **Reset…** |
 
 ![Settings › Models, showing the folder, context length and options for the 27B model](images/06-settings-models.png)
 
 **About › Reset…** returns every setting to its default. Models, chats and workspaces are kept.
+
+### Refusal ablation
+
+**Settings › General › Refusal ablation** loosens the model's refusals, for security and red-team lab work where the stock model declines legitimate requests. It works only with **Qwen 3.8 Flash Next (with refusal directions)** from Model Setup. With the other models the slider has no effect.
+
+- At **0** (Off, the default), the model behaves exactly like the stock one.
+- Around **1–2**, over-eager refusals are loosened.
+- Higher values remove refusals broadly, and replies become less coherent.
+
+Nothing is changed in the model files. The setting applies while the model runs, and you can change it or turn it off at any time. Your agent mode and approvals work the same at every setting.
 
 ---
 
@@ -302,11 +314,12 @@ MCP tools are offered in the main chat (not to worker agents) and follow the sam
 | `~/Library/Caches/Rindi-Agent/PromptCache` | Saved conversation caches (size set in Settings › Performance) |
 | `~/Library/Logs/Rindi-Agent/runtime.log` | Runtime log |
 | `~/.rindi` | Global instructions and skills |
+| `~/Library/Caches/com.rindi.agent` | Downloaded updates waiting to be installed |
 
 ### Uninstall
 
 1. Quit Rindi-Agent and drag it from Applications to the Trash.
-2. To remove your data as well, delete the four locations above. The first one includes downloaded models, which can be very large.
+2. To remove your data as well, delete the locations above. The first one includes downloaded models, which can be very large.
 3. To remove its macOS permissions, including those of the Computer Use helper, run:
 
    ```bash
@@ -330,3 +343,21 @@ MCP tools are offered in the main chat (not to worker agents) and follow the sam
 **A command fails with a sandbox error.** By default, commands can write only inside the workspace. If the task really needs more, change **Workspace sandbox** in **Settings › Tools & Permissions**.
 
 **Something else went wrong.** Open an [issue](https://github.com/True2456/Rindi-Agent-releases/issues) and include the runtime log (**Settings › About › Runtime log › Reveal**). Check the log for anything private first: it can include file names from your projects.
+
+---
+
+## 12. Updating
+
+Rindi-Agent 0.9.1 and later keep themselves up to date. Once a day, the app checks this project's update feed on GitHub. When a new version is out, a window shows what changed:
+
+- **Install Update** downloads it, checks that it's signed by the developer, and offers **Install and Relaunch**.
+- **Remind Me Later** asks again at the next check. **Skip This Version** waits for the one after.
+- **Automatically download and install updates in the future** installs updates without asking.
+
+To check now, choose **Rindi-Agent › Check for Updates…**, or use the button in **Settings › About**. You can also turn automatic checks off there:
+
+![The Updates section of Settings › About, with Check for updates automatically turned on and a Check for Updates button](images/15-settings-updates.png)
+
+An update keeps your settings, chats, models and macOS permissions. If a reply is still running when you choose **Install and Relaunch**, Rindi-Agent asks before stopping it.
+
+**Coming from 0.9.0?** That version can't update itself. Download 0.9.1 once from the [releases page](https://github.com/True2456/Rindi-Agent-releases/releases) and replace the app in Applications.

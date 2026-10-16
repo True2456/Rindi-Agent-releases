@@ -8,15 +8,15 @@ Rindi-Agent is a coding agent for the Mac that runs Qwen 3.8 models entirely on 
 
 ## Download
 
-**[Download Rindi-Agent 0.9.0 beta](https://github.com/True2456/Rindi-Agent-releases/releases/tag/v0.9.0-beta)**: a 54 MB disk image, signed and notarized by Apple. The model is downloaded separately the first time you open the app.
+**[Download Rindi-Agent 0.9.1 beta](https://github.com/True2456/Rindi-Agent-releases/releases/tag/v0.9.1-beta)**: a 55 MB disk image, signed and notarized by Apple. The model is downloaded separately the first time you open the app. Starting with 0.9.1, Rindi-Agent updates itself.
 
 To check the download, put the `.dmg` and its `.sha256` file in the same folder and run:
 
 ```bash
-shasum -a 256 -c Rindi-Agent-0.9.0.dmg.sha256
+shasum -a 256 -c Rindi-Agent-0.9.1.dmg.sha256
 ```
 
-It prints `Rindi-Agent-0.9.0.dmg: OK` when the file is intact.
+It prints `Rindi-Agent-0.9.1.dmg: OK` when the file is intact.
 
 ## Requirements
 
@@ -29,16 +29,18 @@ It prints `Rindi-Agent-0.9.0.dmg: OK` when the file is intact.
   | Qwen 3.8 27B (AWQ 5.0 bpw) | 17 GB | 32 GB | Smaller Macs; text, images and video |
   | Qwen 3.8 27B (AWQ 4.85 bpw) | 17 GB | 32 GB | A slightly smaller 27B build |
 
+  Flash Next also comes in a version **with refusal directions**: the same weights, plus the file that the optional *Refusal ablation* setting needs (see the [User Guide](docs/USER-GUIDE.md#refusal-ablation)).
+
 Without a downloaded model, Rindi-Agent can use Apple's on-device model for short conversations.
 
 ## Install
 
-1. Open `Rindi-Agent-0.9.0.dmg` and drag **Rindi-Agent** onto **Applications**.
+1. Open `Rindi-Agent-0.9.1.dmg` and drag **Rindi-Agent** onto **Applications**.
 2. Open Rindi-Agent from your Applications folder. macOS asks once whether to open an app downloaded from the internet; choose **Open**.
 3. In **Set up a model**, choose **Download** on the model that fits your Mac, or **Use Custom Folder…** if you already have it.
 4. Choose **File › Open Workspace** (⌘O), pick a project folder, and describe what you want done.
 
-The [User Guide](docs/USER-GUIDE.md) walks through everything else, with screenshots: sessions, approvals, the side panels, Computer Use, settings and troubleshooting.
+The [User Guide](docs/USER-GUIDE.md) walks through everything else, with screenshots: sessions, approvals, the side panels, Computer Use, settings and troubleshooting. It's also on the [wiki](https://github.com/True2456/Rindi-Agent-releases/wiki), one page per topic.
 
 ## What it can do
 
@@ -48,19 +50,26 @@ The [User Guide](docs/USER-GUIDE.md) walks through everything else, with screens
 - **Extend it.** Global instructions, reusable skills, and Model Context Protocol (MCP) servers.
 - **Talk to it.** On-device voice input, and spoken replies with your installed voices.
 
+## Speed
+
+On a MacBook Pro with an M5 Max and 128 GB, Qwen 3.8 Flash Next processes prompts at over 1,000 tokens per second all the way to 180,000 tokens of context, and replies at a median 66–83 tokens per second. These numbers come from a real 40-turn agent session; see [Benchmarks](BENCHMARKS.md) for the method and per-turn data.
+
 ## Privacy
 
 Rindi-Agent uses the network only to:
 
 - download models from huggingface.co,
 - search the web and read pages, when the agent uses its web tools,
-- reach MCP servers you add yourself.
+- reach MCP servers you add yourself,
+- check for updates once a day on this page's update feed (you can turn this off in **Settings › About**).
 
 Everything else, including inference, happens on your Mac.
 
 ## Updating
 
-There is no automatic update in this beta. To update, download the new disk image and replace the app in Applications. Your settings, chats, models and macOS permissions are kept.
+Rindi-Agent 0.9.1 and later check for updates once a day. When one is available, a window shows what's new, and **Install Update** downloads it, checks its signature and relaunches into the new version. To check yourself, choose **Rindi-Agent › Check for Updates…**. Your settings, chats, models and macOS permissions are kept.
+
+**If you have 0.9.0**, which can't update itself, download 0.9.1 once from this page and replace the app in Applications.
 
 ## Reporting problems
 

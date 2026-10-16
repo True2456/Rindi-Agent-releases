@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+    <channel>
+        <title>Rindi-Agent</title>
+        <link>https://github.com/True2456/Rindi-Agent-releases</link>
+        <description>Updates for Rindi-Agent. Newest first; each entry comes from build/release/appcast-item.xml.</description>
+        <language>en</language>
+        <item>
+            <title>Rindi-Agent 0.9.1</title>
+            <pubDate>Fri, 16 Oct 2026 01:10:52 +0000</pubDate>
+            <sparkle:version>74</sparkle:version>
+            <sparkle:shortVersionString>0.9.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>27.0</sparkle:minimumSystemVersion>
+            <sparkle:fullReleaseNotesLink>https://github.com/True2456/Rindi-Agent-releases/releases/tag/v0.9.1-beta</sparkle:fullReleaseNotesLink>
+            <enclosure url="https://github.com/True2456/Rindi-Agent-releases/releases/download/v0.9.1-beta/Rindi-Agent-0.9.1.dmg" sparkle:edSignature="NX5/A6pbvw3m7Ao2wEvS09C1IvcyPLuMYyUjN4ai0dpShkodrttE71BOXZfdYviT8ifUtlYblXb+MpfbIo1KBw==" length="57813147" type="application/octet-stream"/>
+        </item>
+    </channel>
+</rss>
