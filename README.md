@@ -48,7 +48,7 @@ The [User Guide](docs/USER-GUIDE.md) walks through everything else, with screens
 - **Use your Mac's apps.** Computer Use lets the agent read and operate native apps through Accessibility, in the background, without moving your cursor or taking focus. You watch it in a small picture-in-picture window.
 - **Keep you in the loop.** Source control with staging, commits and branches; a file browser; long-running processes with live logs; a built-in web browser; and a task board where the agent can hand cards to worker agents.
 - **Extend it.** Global instructions, reusable skills, and Model Context Protocol (MCP) servers.
-- **Talk to it.** On-device voice input, and spoken replies with your installed voices.
+- **Talk to it.** Dictate prompts instead of typing, and have replies read aloud with Apple's natural voices, including your own Personal Voice. Replies can also be saved as audio files.
 
 ## Benchmarks
 
@@ -72,7 +72,8 @@ Rindi-Agent uses the network only to:
 - download models from huggingface.co,
 - search the web and read pages, when the agent uses its web tools,
 - reach MCP servers you add yourself,
-- check for updates once a day on this page's update feed (you can turn this off in **Settings › About**).
+- check for updates once a day on this page's update feed (you can turn this off in **Settings › About**),
+- recognise dictation through Apple's online speech service, only for languages macOS can't recognise on the Mac.
 
 Everything else, including inference, happens on your Mac.
 

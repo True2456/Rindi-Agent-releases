@@ -8,12 +8,13 @@ This guide covers Rindi-Agent 0.9.2 beta. Every screenshot comes from a real ses
 - [4. Permission modes and approvals](#4-permission-modes-and-approvals)
 - [5. The side panels](#5-the-side-panels)
 - [6. Computer Use](#6-computer-use)
-- [7. Settings](#7-settings)
-- [8. Instructions, skills and MCP servers](#8-instructions-skills-and-mcp-servers)
-- [9. Keyboard shortcuts and slash commands](#9-keyboard-shortcuts-and-slash-commands)
-- [10. Where your data lives](#10-where-your-data-lives)
-- [11. Troubleshooting](#11-troubleshooting)
-- [12. Updating](#12-updating)
+- [7. Voice](#7-voice)
+- [8. Settings](#8-settings)
+- [9. Instructions, skills and MCP servers](#9-instructions-skills-and-mcp-servers)
+- [10. Keyboard shortcuts and slash commands](#10-keyboard-shortcuts-and-slash-commands)
+- [11. Where your data lives](#11-where-your-data-lives)
+- [12. Troubleshooting](#12-troubleshooting)
+- [13. Updating](#13-updating)
 
 ---
 
@@ -84,8 +85,8 @@ From left to right along the bottom of the composer:
 | **Approve** | The agent mode: **Plan**, **Approve** or **Turbo** (see [section 4](#4-permission-modes-and-approvals)) |
 | **Thinking · Medium** | How long the model thinks before answering: Low, Medium or XHigh. Shift-Tab cycles it. |
 | Bar and `0/262.1k` | How much of the model's context the conversation uses |
-| Speaker | Read replies aloud |
-| Microphone | Dictate with on-device speech recognition |
+| Speaker | Read replies aloud (see [section 7](#7-voice)) |
+| Microphone | Dictate a prompt (see [section 7](#7-voice)) |
 | **Flash Next** | The model for the next message |
 | **Load** / **Unload** | Load the model ahead of time, or free its memory |
 | Arrow | Send (Return). Shift-Return adds a new line. **Stop** (⌘.) replaces it while the agent works. |
@@ -128,13 +129,13 @@ For an edit, the proposed change appears just above the card:
 - **Allow Once** runs that one action. The next one asks again.
 - **Reject** refuses it. The agent is told and can try another approach.
 
-Commands run in a sandbox that, by default, can write only inside the workspace. **Settings › Tools & Permissions** sets the sandbox, the approval policy and the tools the model can use independently of the mode (see [section 7](#7-settings)).
+Commands run in a sandbox that, by default, can write only inside the workspace. **Settings › Tools & Permissions** sets the sandbox, the approval policy and the tools the model can use independently of the mode (see [section 8](#8-settings)).
 
 ---
 
 ## 5. The side panels
 
-The buttons at the top right of the window open panels beside the chat. The ⌥⌘ shortcuts are listed in [section 9](#9-keyboard-shortcuts-and-slash-commands).
+The buttons at the top right of the window open panels beside the chat. The ⌥⌘ shortcuts are listed in [section 10](#10-keyboard-shortcuts-and-slash-commands).
 
 ### Source Control
 
@@ -224,7 +225,43 @@ In Approve mode this task took seven approvals, one for each button press. Use T
 
 ---
 
-## 7. Settings
+## 7. Voice
+
+You can dictate prompts instead of typing them, and have replies read aloud. Both use the speech technology built into macOS.
+
+### Dictate a prompt
+
+1. Click the **microphone** in the composer. The first time, macOS asks to let Rindi-Agent use the microphone and speech recognition. Allow both.
+2. Speak. Your words appear in the composer as you talk, after anything you had already typed.
+3. Click the button again (it's red while it listens) to stop. Check the text, fix anything that was misheard, and press Return. Dictated text is never sent on its own.
+
+Dictation uses your Mac's language, or US English if that language isn't available. When macOS can recognise your language on the Mac, it does, and your voice stays on the Mac. For languages it can't, macOS uses Apple's online speech service instead.
+
+### Have replies read aloud
+
+- **Every reply:** click the **speaker** in the composer, or turn on **Settings › Voice › Read completed responses aloud**. Each reply is read when it finishes. Turning it off, or switching to another chat, stops the reading.
+- **One message:** click the speaker under that message. Click it again to stop.
+- **Save as audio:** the arrow under a message saves the spoken version as a `.wav`, `.m4a` or `.aiff` file.
+
+Only the reply itself is read. Reasoning, tool calls and code blocks are skipped, Markdown symbols are left out, and links are read by their text.
+
+### Choose a voice
+
+![Settings › Voice, with Read completed responses aloud, the voice picker set to Automatic, Rate and Volume](images/17-settings-voice.png)
+
+- **Voice / accent:** **Automatic** picks the best voice installed for your language. The list shows only natural-sounding voices: Premium, Enhanced and Siri voices, and your Personal Voice.
+- **Manage System Voices in macOS…** opens **System Settings › Accessibility › Spoken Content**, where you can download more voices. Premium voices sound the most natural.
+- **Rate** and **Volume** set the speed and loudness.
+
+**Personal Voice:** if you've created one in **System Settings › Accessibility › Personal Voice**, macOS asks once whether Rindi-Agent may use it. After you allow it, your voice appears in the list.
+
+### Audio files from the agent
+
+The agent can also turn text into an audio file in your workspace, such as a narration or an audio version of a document. It uses your voice and volume settings unless you ask for a different voice. Like any other file change, it waits for **Allow Once** in Approve mode.
+
+---
+
+## 8. Settings
 
 Open **Settings** with ⌘, or the button at the bottom of the sidebar. Use the search field to find any setting by name. Changes apply immediately.
 
@@ -235,10 +272,10 @@ Open **Settings** with ⌘, or the button at the bottom of the sidebar. Use the 
 | **Performance** | Automatic compaction of long chats, how many recent conversations stay in memory, the SSD conversation cache, and the GPU buffer pool |
 | **Instructions** | Your global instructions file and installed skills |
 | **Tools & Permissions** | Plan guidance, the workspace sandbox, the approval policy, Native app control, each tool on or off, and execution limits |
-| **Voice** | Reading replies aloud: voice, rate and volume |
+| **Voice** | [Reading replies aloud](#7-voice): voice, rate and volume |
 | **MCP Servers** | Model Context Protocol servers |
 | **Logs** | The runtime log, with **Copy**, **Show Log File** and **Clear** |
-| **About** | Version, memory, [updates](#12-updating), data folder, runtime log, and **Reset…** |
+| **About** | Version, memory, [updates](#13-updating), data folder, runtime log, and **Reset…** |
 
 ![Settings › Models, showing the folder, context length and options for the 27B model](images/06-settings-models.png)
 
@@ -256,7 +293,7 @@ Nothing is changed in the model files. The setting applies while the model runs,
 
 ---
 
-## 8. Instructions, skills and MCP servers
+## 9. Instructions, skills and MCP servers
 
 ### Global instructions
 
@@ -280,7 +317,7 @@ MCP tools are offered in the main chat (not to worker agents) and follow the sam
 
 ---
 
-## 9. Keyboard shortcuts and slash commands
+## 10. Keyboard shortcuts and slash commands
 
 | Action | Shortcut |
 | --- | --- |
@@ -308,7 +345,7 @@ MCP tools are offered in the main chat (not to worker agents) and follow the sam
 
 ---
 
-## 10. Where your data lives
+## 11. Where your data lives
 
 | Location | Contents |
 | --- | --- |
@@ -330,7 +367,7 @@ MCP tools are offered in the main chat (not to worker agents) and follow the sam
 
 ---
 
-## 11. Troubleshooting
+## 12. Troubleshooting
 
 **The first reply takes a long time.** The model is loading into memory. To load it in advance, click **Load** in the composer. Later replies start much faster, and switching between recent chats doesn't reprocess them.
 
@@ -342,13 +379,17 @@ MCP tools are offered in the main chat (not to worker agents) and follow the sam
 
 **Computer Use says Screen Recording is missing.** Enable Rindi-Agent under **System Settings › Privacy & Security › Screen Recording**. If the message names *Rindi Computer Use*, click **Reveal Rindi Computer Use** in the Computer Use window and drag the helper into that list. Quit and reopen Rindi-Agent afterwards.
 
+**The microphone button shows an error.** Allow Rindi-Agent under **System Settings › Privacy & Security › Microphone** and **› Speech Recognition**, then try again.
+
+**Replies are read in a robotic voice, or the voice list is empty.** Download a Premium or Enhanced voice for your language with **Settings › Voice › Manage System Voices in macOS…**.
+
 **A command fails with a sandbox error.** By default, commands can write only inside the workspace. If the task really needs more, change **Workspace sandbox** in **Settings › Tools & Permissions**.
 
 **Something else went wrong.** Open an [issue](https://github.com/True2456/Rindi-Agent-releases/issues) and include the runtime log (**Settings › About › Runtime log › Reveal**). Check the log for anything private first: it can include file names from your projects.
 
 ---
 
-## 12. Updating
+## 13. Updating
 
 Rindi-Agent 0.9.1 and later keep themselves up to date. Once a day, the app checks this project's update feed on GitHub. When a new version is out, a window shows what changed:
 
