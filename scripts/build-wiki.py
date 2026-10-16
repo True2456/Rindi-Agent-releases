@@ -74,10 +74,16 @@ for source, name in (("BENCHMARKS.md", "Benchmarks"), ("CHANGELOG.md", "Release-
 readme = (root / "README.md").read_text()
 summary = readme.split("\n## ", 1)[0]
 summary = re.sub(r"\A# .+\n+", "", summary)
+# The README's short speed table, so Home shows it too.
+speed = re.search(r"(?ms)^## Speed\n(.*?)(?=^## )", readme)[1].strip()
 contents = "\n".join(f"{i}. [{title}]({name})" for i, (name, title, _) in enumerate(pages, 1))
 (out / "Home.md").write_text(rewrite(summary).strip() + f"""
 
 **[Download the latest version](https://github.com/{REPO}/releases)** · [Benchmarks](Benchmarks) · [Release notes](Release-notes) · [Report a problem](https://github.com/{REPO}/issues)
+
+## Speed
+
+{rewrite(speed)}
 
 ## User guide
 

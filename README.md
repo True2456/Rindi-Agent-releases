@@ -52,7 +52,16 @@ The [User Guide](docs/USER-GUIDE.md) walks through everything else, with screens
 
 ## Speed
 
-On a MacBook Pro with an M5 Max and 128 GB, Qwen 3.8 Flash Next processes prompts at over 1,000 tokens per second all the way to 180,000 tokens of context, and replies at a median 66–83 tokens per second. These numbers come from a real 40-turn agent session; see [Benchmarks](BENCHMARKS.md) for the method and per-turn data.
+Qwen 3.8 Flash Next on a MacBook Pro with an M5 Max and 128 GB, measured over a real 40-turn agent session:
+
+| Context | Prompt processing | Reply (decode) |
+| --- | ---: | ---: |
+| 0–30k tokens | 1,120 tok/s | 66 tok/s |
+| 30–90k tokens | 1,269–1,404 tok/s | 72–83 tok/s |
+| 90–150k tokens | 1,072–1,211 tok/s | 77–78 tok/s |
+| 150–180k tokens | 1,089 tok/s | 74 tok/s |
+
+When the agent read a 15,000-token file into a conversation that was already 155,000 tokens long, its reply started 14 seconds later. [Benchmarks](BENCHMARKS.md) has the method, every context range, and the per-turn data.
 
 ## Privacy
 
