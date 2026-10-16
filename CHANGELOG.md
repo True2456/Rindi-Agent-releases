@@ -1,5 +1,11 @@
 # Release notes
 
+## 0.9.2 beta (16 October 2026)
+
+- **Fix:** Rindi-Agent could crash while the agent was working and the pointer was over its window. The cause is a bug in macOS 27's Swift runtime; Rindi-Agent now works around it at the point where the crash happened.
+
+If you have 0.9.1, Rindi-Agent offers this update by itself; you can also choose **Rindi-Agent › Check for Updates…**. If you have 0.9.0, download it once from the releases page.
+
 ## 0.9.1 beta (16 October 2026)
 
 **From this version on, Rindi-Agent updates itself.** If you have 0.9.0, download 0.9.1 once and replace the app in Applications.

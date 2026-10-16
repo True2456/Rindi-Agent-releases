@@ -1,6 +1,6 @@
 # Rindi-Agent User Guide
 
-This guide covers Rindi-Agent 0.9.1 beta. Every screenshot comes from a real session on a small example project, `todo-cli`.
+This guide covers Rindi-Agent 0.9.2 beta. Every screenshot comes from a real session on a small example project, `todo-cli`.
 
 - [1. Install and set up a model](#1-install-and-set-up-a-model)
 - [2. Workspaces and sessions](#2-workspaces-and-sessions)
@@ -21,7 +21,7 @@ This guide covers Rindi-Agent 0.9.1 beta. Every screenshot comes from a real ses
 
 ### Install the app
 
-1. Download `Rindi-Agent-0.9.1.dmg` from the [releases page](https://github.com/True2456/Rindi-Agent-releases/releases).
+1. Download `Rindi-Agent-0.9.2.dmg` from the [releases page](https://github.com/True2456/Rindi-Agent-releases/releases).
 2. Open the disk image and drag **Rindi-Agent** onto the **Applications** shortcut.
 3. Eject the disk image and open Rindi-Agent from Applications.
 
@@ -362,4 +362,4 @@ To check now, choose **Rindi-Agent › Check for Updates…**, or use the button
 
 An update keeps your settings, chats, models and macOS permissions. If a reply is still running when you choose **Install and Relaunch**, Rindi-Agent asks before stopping it.
 
-**Coming from 0.9.0?** That version can't update itself. Download 0.9.1 once from the [releases page](https://github.com/True2456/Rindi-Agent-releases/releases) and replace the app in Applications.
+**Coming from 0.9.0?** That version can't update itself. Download the latest version once from the [releases page](https://github.com/True2456/Rindi-Agent-releases/releases) and replace the app in Applications.

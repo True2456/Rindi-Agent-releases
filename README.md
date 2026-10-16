@@ -8,15 +8,15 @@ Rindi-Agent is a coding agent for the Mac that runs Qwen 3.8 models entirely on 
 
 ## Download
 
-**[Download Rindi-Agent 0.9.1 beta](https://github.com/True2456/Rindi-Agent-releases/releases/tag/v0.9.1-beta)**: a 55 MB disk image, signed and notarized by Apple. The model is downloaded separately the first time you open the app. Starting with 0.9.1, Rindi-Agent updates itself.
+**[Download Rindi-Agent 0.9.2 beta](https://github.com/True2456/Rindi-Agent-releases/releases/tag/v0.9.2-beta)**: a 55 MB disk image, signed and notarized by Apple. The model is downloaded separately the first time you open the app. Starting with 0.9.1, Rindi-Agent updates itself.
 
 To check the download, put the `.dmg` and its `.sha256` file in the same folder and run:
 
 ```bash
-shasum -a 256 -c Rindi-Agent-0.9.1.dmg.sha256
+shasum -a 256 -c Rindi-Agent-0.9.2.dmg.sha256
 ```
 
-It prints `Rindi-Agent-0.9.1.dmg: OK` when the file is intact.
+It prints `Rindi-Agent-0.9.2.dmg: OK` when the file is intact.
 
 ## Requirements
 
@@ -35,7 +35,7 @@ Without a downloaded model, Rindi-Agent can use Apple's on-device model for shor
 
 ## Install
 
-1. Open `Rindi-Agent-0.9.1.dmg` and drag **Rindi-Agent** onto **Applications**.
+1. Open `Rindi-Agent-0.9.2.dmg` and drag **Rindi-Agent** onto **Applications**.
 2. Open Rindi-Agent from your Applications folder. macOS asks once whether to open an app downloaded from the internet; choose **Open**.
 3. In **Set up a model**, choose **Download** on the model that fits your Mac, or **Use Custom Folder…** if you already have it.
 4. Choose **File › Open Workspace** (⌘O), pick a project folder, and describe what you want done.
@@ -80,7 +80,7 @@ Everything else, including inference, happens on your Mac.
 
 Rindi-Agent 0.9.1 and later check for updates once a day. When one is available, a window shows what's new, and **Install Update** downloads it, checks its signature and relaunches into the new version. To check yourself, choose **Rindi-Agent › Check for Updates…**. Your settings, chats, models and macOS permissions are kept.
 
-**If you have 0.9.0**, which can't update itself, download 0.9.1 once from this page and replace the app in Applications.
+**If you have 0.9.0**, which can't update itself, download the latest version once from this page and replace the app in Applications.
 
 ## Reporting problems
 
