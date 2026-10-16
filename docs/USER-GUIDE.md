@@ -352,6 +352,8 @@ MCP tools are offered in the main chat (not to worker agents) and follow the sam
 
 Rindi-Agent 0.9.1 and later keep themselves up to date. Once a day, the app checks this project's update feed on GitHub. When a new version is out, a window shows what changed:
 
+![The update window offering Rindi-Agent 0.9.2 to a Mac running 0.9.1, with the release note and the Skip This Version, Remind Me Later and Install Update buttons](images/16-update-window.png)
+
 - **Install Update** downloads it, checks that it's signed by the developer, and offers **Install and Relaunch**.
 - **Remind Me Later** asks again at the next check. **Skip This Version** waits for the one after.
 - **Automatically download and install updates in the future** installs updates without asking.
