@@ -54,7 +54,8 @@ def rewrite(text: str) -> str:
     text = re.sub(r"\]\(#([\w\-]+)\)", lambda m: f"]({anchors.get(m[1], '#' + m[1])})", text)
     text = re.sub(r"\]\((?:docs/)?USER-GUIDE\.md#([\w\-]+)\)", lambda m: f"]({anchors.get(m[1], 'Home')})", text)
     text = re.sub(r"\]\((?:docs/)?USER-GUIDE\.md\)", "](Home)", text)
-    text = text.replace("](BENCHMARKS.md)", "](Benchmarks)").replace("](CHANGELOG.md)", "](Release-notes)")
+    text = re.sub(r"\]\((?:\.\./)?BENCHMARKS\.md(#[\w\-]+)?\)", lambda m: f"](Benchmarks{m[1] or ''})", text)
+    text = text.replace("](CHANGELOG.md)", "](Release-notes)")
     text = re.sub(r"\]\((benchmarks/[^)]+)\)", lambda m: f"]({BLOB}/{m[1]})", text)
     return text
 
@@ -74,16 +75,16 @@ for source, name in (("BENCHMARKS.md", "Benchmarks"), ("CHANGELOG.md", "Release-
 readme = (root / "README.md").read_text()
 summary = readme.split("\n## ", 1)[0]
 summary = re.sub(r"\A# .+\n+", "", summary)
-# The README's short speed table, so Home shows it too.
-speed = re.search(r"(?ms)^## Speed\n(.*?)(?=^## )", readme)[1].strip()
+# The README's short benchmarks section, so Home shows it too.
+benchmarks = re.search(r"(?ms)^## Benchmarks\n(.*?)(?=^## )", readme)[1].strip()
 contents = "\n".join(f"{i}. [{title}]({name})" for i, (name, title, _) in enumerate(pages, 1))
 (out / "Home.md").write_text(rewrite(summary).strip() + f"""
 
 **[Download the latest version](https://github.com/{REPO}/releases)** · [Benchmarks](Benchmarks) · [Release notes](Release-notes) · [Report a problem](https://github.com/{REPO}/issues)
 
-## Speed
+## Benchmarks
 
-{rewrite(speed)}
+{rewrite(benchmarks)}
 
 ## User guide
 

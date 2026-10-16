@@ -40,6 +40,8 @@ On first launch, **Set up a model** opens.
 | Qwen 3.8 27B (AWQ 4.85 bpw) | 17 GB | 32 GB | You want a slightly smaller 27B |
 | Qwen 3.8 Flash Next (with refusal directions) | 182 GB | 128 GB | You want the optional [Refusal ablation](#refusal-ablation) setting. Same weights as Flash Next |
 
+On the Artificial Analysis Intelligence Index, Flash Next scores 40 and the 27B scores 34 with thinking at XHigh (28 at the default Medium). Those are the full-precision models' scores; see [Benchmarks](../BENCHMARKS.md#intelligence) for the comparison with hosted models.
+
 - **Download** fetches the model from Hugging Face into the **Download location** shown at the top. Use **Change…** to put models on another drive. A download resumes after an interruption, every file is checked against its published checksum, and the model only counts as installed once the whole download is complete.
 - The window checks free space first. In the screenshot, the Mac has 126 GB free, so both Flash Next downloads (which need 184 GB) show a warning. Scroll down for the 27B models.
 - **Use Custom Folder…** points Rindi-Agent at a copy of the model you already have.

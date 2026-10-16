@@ -50,9 +50,11 @@ The [User Guide](docs/USER-GUIDE.md) walks through everything else, with screens
 - **Extend it.** Global instructions, reusable skills, and Model Context Protocol (MCP) servers.
 - **Talk to it.** On-device voice input, and spoken replies with your installed voices.
 
-## Speed
+## Benchmarks
 
-Qwen 3.8 Flash Next on a MacBook Pro with an M5 Max and 128 GB, measured over a real 40-turn agent session:
+**Intelligence.** On the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), Qwen 3.8 Flash Next scores **40**, between Gemini 3.8 Flash (41) and DeepSeek V4.1 Flash (39). Qwen 3.8 27B scores **34** with thinking set to XHigh. These scores are for the full-precision models; see [Benchmarks](BENCHMARKS.md#intelligence) for the comparison and caveats.
+
+**Speed.** Qwen 3.8 Flash Next on a MacBook Pro with an M5 Max and 128 GB, measured over a real 40-turn agent session:
 
 | Context | Prompt processing | Reply (decode) |
 | --- | ---: | ---: |
